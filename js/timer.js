@@ -5,8 +5,8 @@ const minutesElem = document.querySelector('.time__minutes')
 const secondsElem = document.querySelector('.time__seconds')
 
 const showTime = (seconds) => {
-	const min = Math.floor(seconds / 60)
-	const sec = seconds % 60
+  const min = Math.floor(seconds / 60)
+  const sec = seconds % 60
   minutesElem.textContent = min < 10 ? `0${min}` : min
   secondsElem.textContent = sec < 10 ? `0${sec}` : sec
 }
