@@ -16,7 +16,6 @@ export const startTimer = () => {
   state.timeLeft -= 1
 
   showTime(state.timeLeft)
-
   if (state.timeLeft > 0 && state.isActive) {
     state.timerId = setTimeout(startTimer, 1000)
   }

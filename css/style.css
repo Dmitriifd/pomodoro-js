@@ -121,7 +121,7 @@ iframe {
 }
 
 .navigation__btn_active {
-  pointer-events: none;
+  /* pointer-events: none; */
   color: #FFF8EE;
   background-color: #F85959;
 }

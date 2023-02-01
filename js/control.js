@@ -6,12 +6,40 @@ const btnStop = document.querySelector('.control__btn_stop')
 const navigationBtns = document.querySelectorAll('.navigation__btn')
 
 export const changeActiveBtn = (dataUse) => {
+  if (dataUse) {
+    navigationBtns.forEach((btn) => {
+      if (btn.dataset.use === dataUse) {
+        btn.classList.add('navigation__btn_active')
+      } else {
+        btn.classList.remove('navigation__btn_active')
+      }
+    })
+  }
+
   navigationBtns.forEach((btn) => {
-    if (btn.dataset.use === dataUse) {
-      btn.classList.add('navigation__btn_active')
-    } else {
-      btn.classList.remove('navigation__btn_active')
-    }
+    btn.addEventListener('click', () => {
+      navigationBtns.forEach((btn) => {
+        btn.classList.remove('navigation__btn_active')
+      })
+
+      switch (btn.dataset.use) {
+        case 'work':
+          btn.classList.add('navigation__btn_active')
+          state.status = btn.dataset.use
+          stop()
+          break
+        case 'break':
+          btn.classList.add('navigation__btn_active')
+          state.status = btn.dataset.use
+          stop()
+          break
+        case 'relax':
+          btn.classList.add('navigation__btn_active')
+          state.status = btn.dataset.use
+          stop()
+          break
+      }
+    })
   })
 }
 
@@ -39,3 +67,5 @@ export const initControl = () => {
   btnStop.addEventListener('click', stop)
   showTime(state.timeLeft)
 }
+
+changeActiveBtn()
