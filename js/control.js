@@ -3,6 +3,17 @@ import { showTime, startTimer } from './timer.js'
 
 const btnStart = document.querySelector('.control__btn_start')
 const btnStop = document.querySelector('.control__btn_stop')
+const navigationBtns = document.querySelectorAll('.navigation__btn')
+
+export const changeActiveBtn = (dataUse) => {
+  navigationBtns.forEach((btn) => {
+    if (btn.dataset.use === dataUse) {
+      btn.classList.add('navigation__btn_active')
+    } else {
+      btn.classList.remove('navigation__btn_active')
+    }
+  })
+}
 
 const stop = () => {
   clearTimeout(state.timerId)
