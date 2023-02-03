@@ -14,7 +14,7 @@ todoAddBtn.textContent = 'Добавить новую задачу'
 li.append(todoAddBtn)
 
 const getTodo = () => {
-  const todoList = JSON.parse(localStorage.getItem('pomodoro')) || []
+  const todoList = JSON.parse(localStorage.getItem('pomodoro') || '[]')
 
   return todoList
 }
@@ -34,8 +34,12 @@ const addTodo = (title) => {
   return todo
 }
 
-const updateTodo = (todo) => {
+export const updateTodo = (todo) => {
   const todoList = getTodo()
+
+  if (!todoList.length) {
+    return
+  }
 
   const todoItem = todoList.find((item) => item.id === todo.id)
   todoItem.title = todo.title
@@ -90,8 +94,8 @@ const createTodoListItem = (todo) => {
       if (todo.id === state.activeTodo.id) {
         state.activeTodo.title = todo.title
       }
-      updateTodo(todo)
       showTodo()
+      updateTodo(todo)
     })
 
     delBtn.addEventListener('click', () => {
@@ -108,7 +112,7 @@ const renderTodoList = (list) => {
   todoListElem.append(li)
 }
 
-const showTodo = () => {
+export const showTodo = () => {
   if (state.activeTodo) {
     titleElem.textContent = state.activeTodo.title
     countElem.textContent = state.activeTodo.pomodoro
@@ -137,8 +141,7 @@ export const initTodo = () => {
 
   todoAddBtn.addEventListener('click', () => {
     const title = prompt('Введите имя задачи')?.trim()
-    if(title) {
-      console.log(title)
+    if (title) {
       const todo = addTodo(title)
       createTodoListItem(todo)
     } else {
